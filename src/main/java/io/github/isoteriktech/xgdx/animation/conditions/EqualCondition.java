@@ -24,7 +24,6 @@ public class EqualCondition<T> implements ICondition {
         this(first, second, true);
     }
 
-
     @Override
     public boolean test() {
         if (identity)

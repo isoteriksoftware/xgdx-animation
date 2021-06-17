@@ -9,9 +9,13 @@ public class GreaterThanCondition implements ICondition {
         this.first = first;
         this.second = second;
     }
-    
+
+    public GreaterThanCondition(float first, float second) {
+        this(new DataSource<>(first), new DataSource<>(second));
+    }
+
     @Override
     public boolean test() {
-        return false;
+        return first.data > second.data;
     }
 }

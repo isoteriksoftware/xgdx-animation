@@ -13,8 +13,8 @@ public class CompoundCondition<T> implements ICondition {
         andConditions = new AndCondition(orConditions);
     }
 
-    public CompoundCondition(T dataSource) {
-        this(new DataSource<>(dataSource));
+    public CompoundCondition(T initialValue) {
+        this(new DataSource<>(initialValue));
     }
 
     public CompoundCondition<T> setDataSource(T dataSource) {
@@ -22,8 +22,12 @@ public class CompoundCondition<T> implements ICondition {
         return this;
     }
 
-    public T getDataSource() {
+    public T getValue() {
         return dataSource.data;
+    }
+
+    public void setValue(T value) {
+        dataSource.set(value);
     }
 
     public CompoundCondition<T> and(ICondition condition, ICondition... conditions) {

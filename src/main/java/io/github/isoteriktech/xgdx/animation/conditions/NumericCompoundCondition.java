@@ -5,8 +5,8 @@ public class NumericCompoundCondition extends CompoundCondition<Float> {
         super(dataSource);
     }
 
-    public NumericCompoundCondition(Float dataSource) {
-        super(dataSource);
+    public NumericCompoundCondition(Float initialValue) {
+        super(initialValue);
     }
 
     public NumericCompoundCondition greaterThan(DataSource<Float> dataSource) {
@@ -26,6 +26,26 @@ public class NumericCompoundCondition extends CompoundCondition<Float> {
 
     public NumericCompoundCondition lessThan(float value) {
         and(new LessThanCondition(this.dataSource, new DataSource<>(value)));
+        return this;
+    }
+
+    public NumericCompoundCondition orGreaterThan(DataSource<Float> dataSource) {
+        or(new GreaterThanCondition(this.dataSource, dataSource));
+        return this;
+    }
+
+    public NumericCompoundCondition orGreaterThan(float value) {
+        or(new GreaterThanCondition(this.dataSource, new DataSource<>(value)));
+        return this;
+    }
+
+    public NumericCompoundCondition orLessThan(DataSource<Float> dataSource) {
+        or(new LessThanCondition(this.dataSource, dataSource));
+        return this;
+    }
+
+    public NumericCompoundCondition orLessThan(float value) {
+        or(new LessThanCondition(this.dataSource, new DataSource<>(value)));
         return this;
     }
 }

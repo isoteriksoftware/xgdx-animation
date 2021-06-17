@@ -13,7 +13,7 @@ public class EqualCondition<T> implements ICondition {
     }
 
     public EqualCondition(DataSource<T> first, DataSource<T> second) {
-        this(first, second, true);
+        this(first, second, false);
     }
 
     public EqualCondition(T first, T second, boolean identity) {
@@ -21,7 +21,7 @@ public class EqualCondition<T> implements ICondition {
     }
 
     public EqualCondition(T first, T second) {
-        this(first, second, true);
+        this(first, second, false);
     }
 
     @Override

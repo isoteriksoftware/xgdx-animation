@@ -2,25 +2,25 @@ package io.github.isoteriktech.xgdx.animation.conditions;
 
 import io.github.isoteriktech.xgdx.animation.ICondition;
 
-public class EqualsCondition<T> implements ICondition {
+public class EqualCondition<T> implements ICondition {
     public DataSource<T> first, second;
     public boolean identity;
 
-    public EqualsCondition(DataSource<T> first, DataSource<T> second, boolean identity) {
+    public EqualCondition(DataSource<T> first, DataSource<T> second, boolean identity) {
         this.first = first;
         this.second = second;
         this.identity = identity;
     }
 
-    public EqualsCondition(DataSource<T> first, DataSource<T> second) {
+    public EqualCondition(DataSource<T> first, DataSource<T> second) {
         this(first, second, true);
     }
 
-    public EqualsCondition(T first, T second, boolean identity) {
+    public EqualCondition(T first, T second, boolean identity) {
         this(new DataSource<>(first), new DataSource<>(second), identity);
     }
 
-    public EqualsCondition(T first, T second) {
+    public EqualCondition(T first, T second) {
         this(first, second, true);
     }
 

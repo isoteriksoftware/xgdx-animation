@@ -21,11 +21,11 @@ import io.github.isoteriktech.xgdx.x2d.components.renderer.SpriteRenderer;
  * @author isoteriksoftware
  */
 public class FrameAnimation extends Component implements State<GameObject>  {
-    private final Array<? extends TextureRegion> sprites;
+    protected final Array<? extends TextureRegion> sprites;
 
-    private final Animation<? extends TextureRegion> animation;
+    protected final Animation<? extends TextureRegion> animation;
 
-    private float stateTime;
+    protected float stateTime;
 
     public static final Animation.PlayMode NORMAL =
             Animation.PlayMode.NORMAL;

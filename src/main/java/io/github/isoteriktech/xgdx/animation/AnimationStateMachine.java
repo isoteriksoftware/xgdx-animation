@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Array;
  * <p>
  * This state machine does not allow explicit change of states (except the global and initial state). If you need more control, use {@link DefaultStateMachine} instead.
  * @param <E> the type of the entity handled by this state machine
- * @param <S> the type of state managed by this state machine
+ * @param <S> the type of state
  *
  * @see com.badlogic.gdx.ai.fsm.StateMachine
  * @see Transition

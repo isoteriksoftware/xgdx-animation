@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * An <strong>AnimationStateMachine</strong> uses {@link Transition}s to automatically manage transitions between states.
- * The state machine uses given {@link Transition}s to determine the current state and the next state.
+ * The state machine uses available {@link Transition}s to determine the current state and the next state.
  * <p>
  * Because it is a <strong>finite state machine</strong>, in addition to the global state, this machine can only be in one state at any given time. {@link Transition}s are
  * evaluated from first to last. If more than one {@link Transition} is triggered, the last triggered (in the order added) transition will determine the current state, others are ignored!

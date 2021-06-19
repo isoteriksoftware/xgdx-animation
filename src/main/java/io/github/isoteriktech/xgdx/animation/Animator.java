@@ -86,9 +86,9 @@ public class Animator<S extends State<GameObject>> extends Component {
     }
 
     /**
-     *
+     * Checks whether the given animation is one of the animations managed by this animator
      * @param animation the animation to check
-     * @return whether the given animation is one of the animations managed by this animator
+     * @return true if found, false otherwise
      */
     public boolean hasAnimation(S animation)
     { return animations.contains(animation, true); }

@@ -62,7 +62,7 @@ public class TransitionTest {
 
         assertTrue(transition.isTriggered());
 
-        numericCompoundCondition.setValue(0f);
+        numericCompoundCondition.dataSource.set(0f);
         assertFalse(transition.isTriggered());
     }
 

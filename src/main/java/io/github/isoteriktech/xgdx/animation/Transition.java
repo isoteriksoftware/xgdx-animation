@@ -17,7 +17,15 @@ import com.badlogic.gdx.utils.Array;
 public class Transition<S extends State<?>> {
     protected Array<ICondition> conditions;
 
+    /**
+     * The state to transition from. This can be null.
+     * When null, transition will be triggered from any state.
+     */
     public S from;
+
+    /**
+     * The state to transition to. Should not be null.
+     */
     public S to;
 
     /**

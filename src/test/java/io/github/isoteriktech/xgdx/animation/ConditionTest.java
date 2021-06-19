@@ -10,7 +10,7 @@ public class ConditionTest {
         BooleanCondition booleanCondition = new BooleanCondition(true);
         assertTrue(booleanCondition.test());
 
-        booleanCondition.value.set(false);
+        booleanCondition.dataSource.set(false);
         assertFalse(booleanCondition.test());
     }
 
@@ -88,7 +88,7 @@ public class ConditionTest {
         compoundCondition.equal(false);
         assertFalse(compoundCondition.test());
 
-        compoundCondition.setValue(false);
+        compoundCondition.dataSource.set(false);
         assertTrue(compoundCondition.test());
     }
 

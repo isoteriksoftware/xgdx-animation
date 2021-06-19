@@ -85,7 +85,7 @@ public class AnimationStateMachineTest {
 
         assertSame(stateA, stateMachine.getCurrentState());
 
-        booleanCondition.value.set(true);
+        booleanCondition.dataSource.set(true);
         stateMachine.update();
 
         assertSame(stateB, stateMachine.getCurrentState());
@@ -109,7 +109,7 @@ public class AnimationStateMachineTest {
         assertSame(stateA, stateMachine.getCurrentState());
 
         // Intent: transition from A to B
-        booleanCondition1.value.set(true);
+        booleanCondition1.dataSource.set(true);
         stateMachine.update();
 
         /*
@@ -121,7 +121,7 @@ public class AnimationStateMachineTest {
         assertSame(stateC, stateMachine.getCurrentState());
 
         // Intent: transition from C to B
-        booleanCondition2.value.set(false);
+        booleanCondition2.dataSource.set(false);
         stateMachine.addTransition(transitionBtoC.invert()); // to make the transition bi-directional
         stateMachine.update();
 

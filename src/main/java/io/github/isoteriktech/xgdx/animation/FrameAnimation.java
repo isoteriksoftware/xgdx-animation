@@ -244,7 +244,12 @@ public class FrameAnimation extends Component implements State<GameObject>  {
     }
 
     @Override
+    public void attach() {
+        enter(gameObject);
+    }
+
+    @Override
     public void update(float deltaTime) {
-        updateAnimation(deltaTime);
+        update(gameObject);
     }
 }

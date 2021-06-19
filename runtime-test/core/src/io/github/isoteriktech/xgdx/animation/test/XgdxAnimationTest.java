@@ -1,31 +1,15 @@
 package io.github.isoteriktech.xgdx.animation.test;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import io.github.isoteriktech.xgdx.Scene;
+import io.github.isoteriktech.xgdx.XGdxGame;
 
-public class XgdxAnimationTest extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+public class XgdxAnimationTest extends XGdxGame {
 	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
+	protected Scene initGame() {
+		xGdx.assets.enqueueFolderContents("sprites", Texture.class);
+		xGdx.assets.loadAssetsNow();
 
-	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		return new FrameAnimationTest();
 	}
 }

@@ -39,6 +39,7 @@ public class Animator<S extends State<GameObject>> extends Component {
      * @param initialAnimation the initial animation
      * @param otherAnimations other animations
      */
+    @SafeVarargs
     public Animator(S initialAnimation,
                     S... otherAnimations) {
         this.initialAnimation = initialAnimation;

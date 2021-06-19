@@ -128,21 +128,58 @@ public class Animator<S extends State<GameObject>> extends Component {
      * Adds a transition.
      * <strong>Note:</strong> this will fail if the {@link Transition} is for animation(s) that are not yet added to the list of animations managed by this animator
      * @param transition the transition to add
+     * @param isBidirectional if true and {@link Transition#from} is not null, a reversed transition will also be added
      * @throws IllegalArgumentException if the {@link Transition} is for animation(s) that are not yet added to the list of animations managed by this animator
      * @return this instance for chaining
      */
-    public Animator<S> addTransition(Transition<S> transition) throws IllegalArgumentException {
+    public Animator<S> addTransition(Transition<S> transition, boolean isBidirectional) throws IllegalArgumentException {
         if (!hasAnimation(transition.from) &&
                 !hasAnimation(transition.to)) {
             throw new IllegalArgumentException("None of the animations for this transition is managed by this animator!");
         }
 
-        if (stateMachine != null)
+        if (stateMachine != null) {
             stateMachine.addTransition(transition);
-        else
+            if (isBidirectional && transition.from != null)
+                stateMachine.addTransitions(transition.invert());
+        }
+        else {
             scheduledTransitions.add(transition);
+            if (isBidirectional && transition.from != null)
+                scheduledTransitions.add(transition.invert());
+        }
 
         return this;
+    }
+
+    /**
+     * Adds a transition.
+     * <strong>Note:</strong> this will fail if the {@link Transition} is for animation(s) that are not yet added to the list of animations managed by this animator
+     * @param transition the transition to add
+     * @throws IllegalArgumentException if the {@link Transition} is for animation(s) that are not yet added to the list of animations managed by this animator
+     * @return this instance for chaining
+     */
+    public Animator<S> addTransition(Transition<S> transition) throws IllegalArgumentException {
+        return addTransition(transition, false);
+    }
+
+    /**
+     * Adds a transition given an animation to transition from, an animation to transition to and one or more conditions for the transition.
+     * <strong>Note:</strong> this will fail if either of the animations given is not yet added to the list of animations managed by this animator
+     * @param from the animation to transition from. Can be null. If it is null, transition will be from any state.
+     * @param to the animation to transition to
+     * @param isBidirectional if true and {@link Transition#from} is not null, a reversed transition will also be added
+     * @param condition a condition for the transition
+     * @param conditions more conditions for the transition
+     * @return this instance for chaining
+     * @throws IllegalArgumentException if either of the animations given is not yet added to the list of animations managed by this animator
+     */
+    public Animator<S> addTransition(S from, S to, boolean isBidirectional,
+                                  ICondition condition, ICondition... conditions) throws IllegalArgumentException {
+        Array<ICondition> conditionArray = new Array<>();
+        conditionArray.add(condition);
+        conditionArray.addAll(conditions);
+        return addTransition(new Transition<>(from, to, conditionArray), isBidirectional);
     }
 
     /**
@@ -156,15 +193,15 @@ public class Animator<S extends State<GameObject>> extends Component {
      * @throws IllegalArgumentException if either of the animations given is not yet added to the list of animations managed by this animator
      */
     public Animator<S> addTransition(S from, S to,
-                                  ICondition condition, ICondition... conditions) throws IllegalArgumentException {
+                                     ICondition condition, ICondition... conditions) throws IllegalArgumentException {
         Array<ICondition> conditionArray = new Array<>();
         conditionArray.add(condition);
         conditionArray.addAll(conditions);
-        return addTransition(new Transition<>(from, to, conditionArray));
+        return addTransition(new Transition<>(from, to, conditionArray), false);
     }
 
     /**
-     * Adds a transition given an animation to transition to from any animation state.
+     * Adds a transition from any animation state given an animation to transition to.
      * <strong>Note:</strong> this will fail if the animation given is not yet added to the list of animations managed by this animator
      * @param to the animation to transition to
      * @param condition a condition for the transition
@@ -177,7 +214,7 @@ public class Animator<S extends State<GameObject>> extends Component {
         Array<ICondition> conditionArray = new Array<>();
         conditionArray.add(condition);
         conditionArray.addAll(conditions);
-        return addTransition(new Transition<>(null, to, conditionArray));
+        return addTransition(new Transition<>(null, to, conditionArray), false);
     }
 
     /**

@@ -110,6 +110,7 @@ project(":core") {
 
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         api "io.github.isoteriktech:xgdx:$xGdxVersion"
         api "io.github.isoteriktech:xgdx-animation:$animationVersion"
     }

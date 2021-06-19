@@ -10,6 +10,6 @@ public class XgdxAnimationTest extends XGdxGame {
 		xGdx.assets.enqueueFolderContents("sprites", Texture.class);
 		xGdx.assets.loadAssetsNow();
 
-		return new FrameAnimationTest();
+		return new AnimatorTest();
 	}
 }

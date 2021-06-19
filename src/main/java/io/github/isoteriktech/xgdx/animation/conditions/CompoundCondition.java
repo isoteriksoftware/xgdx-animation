@@ -40,6 +40,14 @@ public class CompoundCondition<T> implements ICondition {
         return this;
     }
 
+    public CompoundCondition<T> not(ICondition condition) {
+        return and(new NotCondition(condition));
+    }
+
+    public CompoundCondition<T> orNot(ICondition condition) {
+        return or(new NotCondition(condition));
+    }
+
     public CompoundCondition<T> equal(DataSource<T> dataSource) {
         return and(new EqualCondition<>(this.dataSource, dataSource));
     }

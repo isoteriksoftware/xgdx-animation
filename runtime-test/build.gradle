@@ -31,7 +31,7 @@ allprojects {
         aiVersion = '1.8.2'
         gdxControllersVersion = '2.1.0'
         xGdxVersion = '1.1.0'
-        animationVersion = '1.0.0-SNAPSHOT'
+        animationVersion = '1.0.0'
     }
 
     repositories {

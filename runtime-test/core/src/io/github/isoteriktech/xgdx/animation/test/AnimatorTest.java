@@ -44,18 +44,18 @@ public class AnimatorTest extends Scene {
             .addTransition(bunnyJump, jumpCondition);
 
         input.addKeyListener(KeyTrigger.keyDownTrigger(KeyCodes.UP).setPolled(true), (name, evt) -> {
-            jumpCondition.value.set(true);
-            standCondition.value.set(false);
+            jumpCondition.dataSource.set(true);
+            standCondition.dataSource.set(false);
         });
         input.addKeyListener(KeyTrigger.keyUpTrigger(KeyCodes.UP), (name, evt) -> {
-            jumpCondition.value.set(false);
-            standCondition.value.set(true);
+            jumpCondition.dataSource.set(false);
+            standCondition.dataSource.set(true);
         });
         input.addKeyListener(KeyTrigger.keyDownTrigger(KeyCodes.RIGHT).setPolled(true), (name, evt) -> {
-            standCondition.value.set(false);
+            standCondition.dataSource.set(false);
         });
         input.addKeyListener(KeyTrigger.keyUpTrigger(KeyCodes.RIGHT), (name, evt) -> {
-            standCondition.value.set(true);
+            standCondition.dataSource.set(true);
         });
     }
 }
